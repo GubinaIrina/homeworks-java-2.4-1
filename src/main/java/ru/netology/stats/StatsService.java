@@ -33,10 +33,12 @@ public class StatsService {
 
     public long findMinSales(long[] purchases) {
         long min = purchases[0];
+        long monthNumber = 0;
         for (long purchase : purchases) {
             if (min > purchase) {
                 min = purchase;
             }
+            monthNumber ++;
         }
         return min;
     }
