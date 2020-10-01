@@ -9,69 +9,54 @@ public class StatsService {
         return sum;
     }
 
-    public long calculateAverageAmount(long[] purchases) {
-        long averageAmount = 0;
-        long sum = 0;
-        for (long purchase : purchases) {
-            sum += purchase;
-            averageAmount = sum / purchases.length;
+    public long averageAmount(long[] purchases) {
+       return calculateSum(purchases) / purchases.length;
         }
-        return averageAmount;
-    }
 
-    public long findMaxSales(long[] purchases) {
-        long max = purchases[0];
-        long monthNumber = 0;
-        for (long purchase : purchases) {
-            if (max < purchase) {
-                max = purchase;
-            }
-            monthNumber ++;
-        }
-        return max;
-    }
 
-    public long findMinSales(long[] purchases) {
-        long min = purchases[0];
+    public long findMaxSales(long[] purchase) {
+        long max = purchase[0];
         long monthNumber = 0;
-        for (long purchase : purchases) {
-            if (min > purchase) {
-                min = purchase;
+        int i;
+        for (i=0; i< purchase.length; i++) {
+            if (max <= purchase[i]) {
+                max = purchase[i];
+                monthNumber = i + 1;
             }
-            monthNumber ++;
         }
-        return min;
+            return monthNumber;
+        }
+
+    public long findMinSales(long[] purchase) {
+        long min = purchase[0];
+        long monthNumber = 0;
+        int i;
+        for (i=0; i < purchase.length; i++) {
+            if (purchase[i] <= min) {
+                min = purchase[i];
+                monthNumber = i + 1;
+            }
+        }
+        return monthNumber;
     }
 
     public long monthsUnderAverageAmount(long[] purchases) {
         long month = 0;
-        long sum = 0;
         for (long purchase : purchases) {
-            sum += purchase;
-        }
-        long averageAmount = sum / purchases.length;
-        for (long purchase : purchases) {
-            if (purchase > averageAmount) {
+            if (purchase > averageAmount (purchases)) {
                 month++;
             }
         }
         return month;
-
     }
 
     public long monthsBeforeAverageAmount(long[] purchases) {
         long month = 0;
-        long sum = 0;
         for (long purchase : purchases) {
-            sum += purchase;
-        }
-        long averageAmount = sum / purchases.length;
-        for (long purchase : purchases) {
-            if (purchase < averageAmount) {
+            if (purchase < averageAmount (purchases)) {
                 month++;
             }
         }
         return month;
-
     }
 }
